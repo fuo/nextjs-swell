@@ -30,7 +30,7 @@ export default function Gallery({ data }) {
         </div>
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {data &&
-            data.results.map((product) => (
+            data.results.filter(res=>res.images).map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}
         </div>
@@ -40,7 +40,10 @@ export default function Gallery({ data }) {
 }
 
 export async function getStaticProps() {
-  const swellProducts = await swell.products.list()
+  const swellProducts = await swell.products.list({
+    limit: 100,
+    page: 1
+  })
 
   return {
     props: {

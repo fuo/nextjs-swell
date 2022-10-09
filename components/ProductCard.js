@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
           <p>${product.price}</p>
         </div>
         <p className="mt-1 text-sm italic text-gray-500">
-          {product.options[0].values[0].name} calories
+          {product.sku} sku
         </p>
       </a>
     </Link>
