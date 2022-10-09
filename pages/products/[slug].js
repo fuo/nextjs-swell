@@ -61,7 +61,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const swellProducts = await swell.products.list()
   let fullPaths = []
-  for (let product of swellProducts.results) {
+  for (let product of swellProducts.results.filter(res=>res.images)) {
     fullPaths.push({ params: { slug: product.id } })
   }
 
